@@ -11,6 +11,7 @@
 #include "input.h"
 
 #include "title.h"
+#include "tutrial.h"
 #include "bg.h"
 #include "player.h"
 #include "enemy.h"
