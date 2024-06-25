@@ -11,7 +11,7 @@
 #include "input.h"
 
 #include "title.h"
-#include "tutrial.h"
+#include "tutorial.h"
 #include "bg.h"
 #include "player.h"
 #include "enemy.h"
@@ -308,6 +308,10 @@ void Update(void)
 		UpdateTitle();
 		break;
 
+	case MODE_TUTORIAL:
+		UpdateTutorial();
+		break;
+
 	case MODE_GAME:			// ゲーム画面の更新
 		UpdateBG();
 		UpdatePlayer();
@@ -350,6 +354,10 @@ void Draw(void)
 	{
 	case MODE_TITLE:		// タイトル画面の描画
 		DrawTitle();
+		break;
+
+	case MODE_TUTORIAL:
+		DrawTutorial();
 		break;
 
 	case MODE_GAME:			// ゲーム画面の描画
@@ -414,6 +422,9 @@ void SetMode(int mode)
 	// タイトル画面の終了処理
 	UninitTitle();
 
+	//チュートリアル画面の終了処理
+	UninitTutorial();
+
 	// BGの終了処理
 	UninitBG();
 
@@ -444,6 +455,10 @@ void SetMode(int mode)
 		// タイトル画面の初期化
 		InitTitle();
 		PlaySound(SOUND_LABEL_BGM_maou);
+		break;
+
+	case MODE_TUTORIAL:
+		InitTutorial();
 		break;
 
 	case MODE_GAME:
