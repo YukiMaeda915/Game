@@ -13,7 +13,7 @@
 //*****************************************************************************
 #define TEXTURE_WIDTH				(SCREEN_WIDTH)	// 背景サイズ
 #define TEXTURE_HEIGHT				(SCREEN_HEIGHT)	// 
-#define TEXTURE_MAX					(3)				// テクスチャの数
+#define TEXTURE_MAX					(4)				// テクスチャの数
 
 #define TEXTURE_WIDTH_LOGO			(480)			// ロゴサイズ
 #define TEXTURE_HEIGHT_LOGO			(80)			// 
@@ -33,6 +33,7 @@ static char *g_TexturName[TEXTURE_MAX] = {
 	"data/TEXTURE/bg000.jpg",
 	"data/TEXTURE/title.png",
 	"data/TEXTURE/effect000.jpg",
+	"data/TEXTURE/title_logo.png"
 };
 
 
@@ -210,6 +211,20 @@ void DrawTitle(void)
 
 		// １枚のポリゴンの頂点とテクスチャ座標を設定
 		SetSpriteLeftTop(g_VertexBuffer, 0.0f, 0.0f, TEXTURE_WIDTH, TEXTURE_HEIGHT, 0.0f, 0.0f, 1.0f, 1.0f);
+
+		// ポリゴン描画
+		GetDeviceContext()->Draw(4, 0);
+	}
+
+	// タイトルのロゴを描画
+	{
+		// テクスチャ設定
+		GetDeviceContext()->PSSetShaderResources(0, 1, &g_Texture[3]);
+
+		// １枚のポリゴンの頂点とテクスチャ座標を設定
+	//	SetSprite(g_VertexBuffer, g_Pos.x, g_Pos.y, TEXTURE_WIDTH_LOGO, TEXTURE_HEIGHT_LOGO, 0.0f, 0.0f, 1.0f, 1.0f);
+		SetSpriteColor(g_VertexBuffer, g_Pos.x, g_Pos.y, TEXTURE_WIDTH_LOGO, TEXTURE_HEIGHT_LOGO, 0.0f, 0.0f, 1.0f, 1.0f,
+			XMFLOAT4(1.0f, 1.0f, 1.0f, alpha));
 
 		// ポリゴン描画
 		GetDeviceContext()->Draw(4, 0);
